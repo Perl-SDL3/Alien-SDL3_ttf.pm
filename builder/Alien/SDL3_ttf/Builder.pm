@@ -27,24 +27,9 @@ class    #
     #
     field $action : param //= 'build';
     field $meta = CPAN::Meta->load_file('META.json');
-
-    # https://wiki.libsdl.org/SDL3/Installation
-    #~ apt-get install libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
-    #~ pacman -S sdl2 sdl2_image sdl2_mixer sdl2_ttf
-    #~ dnf install SDL2-devel SDL2_image-devel SDL2_mixer-devel SDL2_ttf-devel
-    #~ https://github.com/libsdl-org/setup-sdl/issues/20
-    # TODO: Write a GH action to test with libs preinstalled
-    field $version : param  //= '3.1.2';
+    field $version : param  //= '3.2.0';
     field $prebuilt : param //= 1;
-
-    #~ https://github.com/libsdl-org/SDL_ttf/releases/download/prerelease-3.1.2/SDL3_ttf-3.1.2-win32-arm64.zip
-    #~ https://github.com/libsdl-org/SDL_ttf/releases/download/prerelease-3.1.2/SDL3_ttf-3.1.2-win32-x64.zip
-    #~ https://github.com/libsdl-org/SDL_ttf/releases/download/prerelease-3.1.2/SDL3_ttf-3.1.2-win32-x86.zip
-    #~ https://github.com/libsdl-org/SDL_ttf/releases/download/prerelease-3.1.2/SDL3_ttf-3.1.2.dmg
-    #~ https://github.com/libsdl-org/SDL_ttf/releases/download/prerelease-3.1.2/SDL3_ttf-devel-3.1.2-mingw.zip
-    #~ https://github.com/libsdl-org/SDL_ttf/releases/download/prerelease-3.1.2/SDL3_ttf-devel-3.1.2-VC.zip
-    #~ https://github.com/libsdl-org/SDL_ttf/releases/download/prerelease-3.1.2/SDL3_ttf-3.1.2.tar.gz
-    field $archive : param //= sprintf 'https://github.com/libsdl-org/SDL_ttf/releases/download/prerelease-%s/SDL3_ttf-' . (
+    field $archive : param  //= sprintf 'https://github.com/libsdl-org/SDL_ttf/releases/download/release-%s/SDL3_ttf-' . (
         $^O eq 'MSWin32' ?
             !$prebuilt ?
                 '%s.zip' :
